@@ -1,0 +1,67 @@
+<app-header></app-header>
+<ion-content class="p-15 contact_us">
+  <ion-row>
+    <ion-label class="ml-15 mt-20 bold">Contact us</ion-label>
+  </ion-row>
+  <hr class="hr">
+  <ion-card class="contact-card">
+   <ion-row>
+    <ion-col size="1">
+      <ion-icon name="mail"></ion-icon>
+    </ion-col>
+    <ion-col size="11">
+      <span>{{contactData.email}}</span>
+    </ion-col>
+   </ion-row>
+   <ion-row class="mt-15">
+    <ion-col size="1">
+      <ion-icon name="call"></ion-icon>
+    </ion-col>
+    <ion-col size="11">
+      <span>{{contactData.contact_no}}</span>
+    </ion-col>
+   </ion-row>
+   <ion-row class="mt-15">
+    <ion-col size="1">
+      <ion-icon name="location"></ion-icon>
+    </ion-col>
+    <ion-col size="11">
+      <span>{{contactData.address}}</span>
+    </ion-col>
+   </ion-row>
+   <hr class="hr-full">
+   <ion-row class="text-center">
+     <ion-col><a href="{{contactData.facebook}}"> <ion-icon name="logo-facebook"></ion-icon></a></ion-col>
+     <ion-col><a href="{{contactData.whatsapp}}"><ion-icon name="logo-whatsapp"></ion-icon></a></ion-col>
+     <ion-col><a href="{{contactData.instagram}}"><ion-icon name="logo-instagram"></ion-icon></a></ion-col>
+     <ion-col><a href="{{contactData.linkedin}}"><ion-icon name="logo-linkedin"></ion-icon></a></ion-col>
+   </ion-row>
+  </ion-card>
+  <ion-card class="contact-form-card">
+   <form>
+
+    <fieldset class="txt-box">
+      <legend class="ml-10">Name : <span class="req">*</span></legend>
+      <ion-input class="pl-15" name="name" [(ngModel)]="formData.name"></ion-input>
+    </fieldset>
+    <div class="pl-20" *ngIf="!isValidName() && submit">
+      <ion-text color="danger">This field is required.</ion-text>
+    </div>
+
+    <fieldset class="txt-box">
+      <legend class="ml-10">Email : <span class="req">*</span></legend>
+      <ion-input class="pl-15" type="email" name="email" [(ngModel)]="formData.email"></ion-input>
+    </fieldset>
+    <div class="pl-20" *ngIf="!isValidEmail() && submit">
+      <ion-text color="danger">This field is required.</ion-text>
+    </div> 
+    <fieldset class="txt-box">
+      <legend class="ml-10">Message : </legend>
+      <ion-textarea class="pl-15" type="msg" name="msg" [(ngModel)]="formData.msg"></ion-textarea>
+    </fieldset>
+    <ion-row class="text-center">
+      <ion-button class="submit-btn" class="btn" (click)="contact()">Submit</ion-button>
+    </ion-row>
+   </form>
+  </ion-card>
+</ion-content>

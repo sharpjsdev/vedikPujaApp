@@ -1,0 +1,38 @@
+<ion-app>
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <div class="text-center bgw" style="height: 56px;">
+        <img class="w60" src="../assets/images/logo.png" alt="logo">
+        </div>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">   
+      <ion-menu-toggle>
+        <ion-item  lines="none" detail="false" (click)="profile()">
+          <ion-icon style="font-size:30px;" name="person-outline"></ion-icon>
+          <ion-label style="position: relative;
+          left: 25px;">Profile</ion-label>
+        </ion-item>
+        <ion-item  lines="none" detail="false" (click)="about_us()">
+          <ion-icon style="font-size:30px;" name="information-circle-outline"></ion-icon>
+          <ion-label style="position: relative;
+          left: 25px;">About Us</ion-label>
+        </ion-item>
+        <ion-item  lines="none" detail="false" (click)="contact_us()">
+          <ion-icon style="font-size:30px;" name="call-outline"></ion-icon>
+          <ion-label style="position: relative;
+          left: 25px;">Contact Us</ion-label>
+        </ion-item>
+      <ion-item  lines="none" detail="false" (click)="logout()">
+        <ion-icon style="font-size:30px;" name="log-out-outline"></ion-icon>
+        <ion-label style="position: relative;
+        left: 25px;">Logout</ion-label>
+      </ion-item>
+    </ion-menu-toggle></ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+
+  </div>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>

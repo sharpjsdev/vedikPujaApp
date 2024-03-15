@@ -1,0 +1,56 @@
+<app-header></app-header>
+<ion-content>
+  <!-- <img class="bg" src="../../assets/images/bg1.png"> -->
+  <ion-row class="mt-20">
+    <ion-label class="pl-20 bold">Address</ion-label>
+  </ion-row>
+  <ion-row class="state">
+    <ion-col size="12" class="p-0">
+      <fieldset class="txt-box">
+        <legend class="ml-10">State: <span class="req">*</span></legend>
+        <ion-select class="cityState" placeholder="Select a state" [(ngModel)]="formData.state"  (ionChange)="cityByState()">
+          <ion-select-option *ngFor="let st of stateList" [value]="st.state_id">
+            {{ st.name }}
+          </ion-select-option>
+          </ion-select>
+        <!-- <ion-input class="pl-15" type="text" [(ngModel)]="formData.state" name="state"></ion-input> -->
+      </fieldset>
+      <div class="pl-20" *ngIf="!isValidState() && submit">
+        <ion-text color="danger">This field is required.</ion-text>
+      </div> 
+      </ion-col>
+    </ion-row>
+    <ion-row class="city">
+      <ion-col size="12" class="p-0">
+      <fieldset class="txt-box district">
+        <legend class="ml-10">City/District:  <span class="req">*</span></legend>
+        <ion-select class="cityState" placeholder="Select a City / District"  [(ngModel)]="formData.city">
+          <ion-select-option *ngFor="let city of cityList" [value]="city.distt_id">
+            {{ city.name }}
+          </ion-select-option>
+          </ion-select>
+      </fieldset>
+      <div class="pl-20" *ngIf="!isValidCity() && submit">
+        <ion-text color="danger">This field is required.</ion-text>
+      </div> 
+    </ion-col>
+  </ion-row>   
+  <ion-row class="mt-20">
+    <ion-col size="6" class="p-0">
+      <fieldset class="txt-box">
+        <legend class="ml-10">Pin Code:</legend>
+        <ion-input class="pl-15" type="text" [(ngModel)]="formData.pin" name="pin"></ion-input>
+      </fieldset>
+    </ion-col>
+    <ion-col size="6" >
+     <div class="loc-pos"><ion-icon class="theme-red"  name="location"></ion-icon><span class="theme-red" (click)="fetchLocation()">Choose current location for pin code and address</span></div>
+    </ion-col>
+  </ion-row>
+  
+  <fieldset class="txt-box">
+    <ion-textarea class="pl-15" rows="5" [(ngModel)]="formData.address" placeholder="Address"  name="address"></ion-textarea>
+  </fieldset>
+<ion-row class="text-center">
+  <ion-button class="btn" (click)="nextStep()">Continue <b *ngIf="dakshinaa"> ( ₹ {{ dakshinaa }}) </b></ion-button>
+</ion-row>
+</ion-content>

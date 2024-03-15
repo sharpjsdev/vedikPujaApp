@@ -1,0 +1,29 @@
+ion-content div {
+    font-family: "Kodchasan", sans-serif;
+    font-weight: 600;
+    overflow-x: hidden;
+    margin: 15px;
+}
+ion-content{
+--background: antiquewhite;
+}
+
+ion-content div p{
+    text-align: justify;
+}
+
+div ul{
+    padding: 20px 0px 20px 20px;
+}
+
+div ul li {
+    margin-bottom: 10px; 
+    text-align: justify;
+}
+
+.single-ul{
+    padding: 0px 0px 0px 20px !important;
+}
+h4{
+    font-weight: bold;
+}

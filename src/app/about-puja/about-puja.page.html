@@ -1,0 +1,88 @@
+<app-header></app-header>
+<ion-content>
+<img class="bg" src="../../assets/images/bg1.png">
+<img class="pujaHeadImg"  src="{{ pujaimgPath }}{{pujaImg}}" />
+  <ion-row class="mt-20">
+    <ion-col size="8"><ion-label class="ml-10 bold heading pname">{{pujaName}}</ion-label></ion-col>
+    <ion-col class="text-right pr-15" size="4">₹ {{pujaPrice}}</ion-col>
+  </ion-row>
+  <ion-card class="about-puja-card">
+  <ion-card-header class="about-puja-header">
+    About puja
+  </ion-card-header>
+  <ion-card-content class="mt-10 about-puja-content">
+    <div *ngIf="showFullText; else preview">
+      {{ longText }}
+      <a size="small" (click)="toggleReadMore()">Read less</a>
+    </div>
+    
+    <ng-template #preview>
+      {{ previewText }}
+      <a size="small" (click)="toggleReadMore()">Read more...</a>
+    </ng-template>
+  </ion-card-content>
+  <div class="mt-20">
+  <ion-label *ngIf="pujaDetail?.schedule_at" class="bold">Puja will start in</ion-label>
+      <ion-row class="timer-block" *ngIf="pujaDetail?.schedule_at">
+        <ion-col class="timer-item">
+          <div class="timer-value">{{ (remainingTime$ | async)?.days }}</div>
+          <div class="timer-label">Days</div>
+        </ion-col>
+        <ion-col class="timer-item">
+          <div class="timer-value">{{ (remainingTime$ | async)?.hours }}</div>
+          <div class="timer-label">Hours</div>
+        </ion-col>
+        <ion-col class="timer-item">
+          <div class="timer-value">{{ (remainingTime$ | async)?.minutes }}</div>
+          <div class="timer-label">Min</div>
+        </ion-col>
+        <ion-col class="timer-item">
+          <div class="timer-value">{{ (remainingTime$ | async)?.seconds }}</div>
+          <div class="timer-label">Sec</div>
+        </ion-col>
+      </ion-row>  
+  </div>
+  <ion-button size="small" class="btn book-puja-btn m-20" (click)="book_puja(pujaSlug)">Book Puja</ion-button>
+  </ion-card>
+  <ion-row>
+    <ion-label class="ml-10 bold">Recommended puja's</ion-label>
+  </ion-row>
+  <hr class="hr">
+  <swiper-container [config]="config">
+    <swiper-slide *ngFor="let pair of pujaList | chunk: 2" >
+      <ion-row class="text-center">
+        <ion-col size="6" *ngFor="let puja of pair">
+          <ion-card class="puja-card short-card" >
+            <img class="puja-imgs" src="{{ pujaimgPath }}{{ puja.image }}" (click)="about_puja(puja.slug)">
+            <ion-card-content class="puja-card-content mt-10">
+              <p class="long-text pname">{{ puja.name }}</p>
+              <p class="theme-red font12">{{ puja.booked_puja_count }} People have booked</p>
+            </ion-card-content>
+            <ion-row class="timer-block" *ngIf="puja?.schedule_at">
+              <ng-container *ngIf="puja?.schedule_at | countdown | async as countdownResult">
+                <ion-col class="timer-item">
+                    <div class="timer-value">{{ countdownResult.split(' ')[0] }}</div>
+                    <div class="timer-label">Days</div>
+                </ion-col>
+                <ion-col class="timer-item">
+                    <div class="timer-value">{{ countdownResult.split(' ')[1] }}</div>
+                    <div class="timer-label">Hrs</div>
+                </ion-col>
+                <ion-col class="timer-item">
+                    <div class="timer-value">{{ countdownResult.split(' ')[2] }}</div>
+                    <div class="timer-label">Min</div>
+                </ion-col>
+                <ion-col class="timer-item">
+                    <div class="timer-value">{{ countdownResult.split(' ')[3] }}</div>
+                    <div class="timer-label">Sec</div>
+                </ion-col>
+              </ng-container>
+              </ion-row>
+            <ion-button class="btn book-puja-btn" (click)="book_puja(puja.slug)">Book Puja (₹ {{puja.price}} )</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>
+

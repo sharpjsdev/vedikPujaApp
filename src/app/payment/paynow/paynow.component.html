@@ -1,0 +1,25 @@
+<ion-content>
+  <img class="bg" src="../../assets/images/bg1.png">
+  <div class="text-center">
+    <img class="w60" src="../assets/images/logo.png" alt="logo">
+  </div>
+  <ion-icon name="close" (click)="closeModal()" class="close-btn"></ion-icon>
+  <div class="p-10 m-15 pay-warn text-center">
+    <img src="../../../assets/icon/offer.svg"><span class="warn-txt">Your Puja Dakshina is ₹ {{dakshina}}/- </span>
+  </div>
+  <!-- <ion-row class="mt-20">
+    <ion-label class="pl-15 bold font18">Payment Method</ion-label>
+  </ion-row>
+  <ion-row>
+
+  </ion-row>
+    <ion-radio-group class="mt-20" [(ngModel)]="pay_method" (ionChange)="payMethod()">
+      <ion-item class="mt-20">
+        <ion-radio value="online"></ion-radio>
+        <ion-label class="pl-10" >Online Payment</ion-label>
+      </ion-item>
+    </ion-radio-group> -->
+    <ion-row class="text-center">
+      <ion-button class="btn" (click)="payWithRazorpay()">Pay Now</ion-button>
+    </ion-row>
+</ion-content>

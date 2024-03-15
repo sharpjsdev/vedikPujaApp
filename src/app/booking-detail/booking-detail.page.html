@@ -1,0 +1,180 @@
+<app-header></app-header>
+
+<ion-content class="booking-detail-content">
+  <img class="bg" src="../../assets/images/bg1.png">
+
+  <ion-row class="mt-20">
+    <ion-col><ion-label class="pl-10 bold">Booking Detail</ion-label></ion-col>
+  </ion-row>
+
+  <div class="booking-detail-div">
+
+    <img class="puja-img" src="{{pujaimgPath}}{{ BookingData?.puja.image }}">
+
+    <ion-card class="p-name-card">
+      <ion-row class="p-heading pname" *ngIf="BookingData?.puja?.name">
+        {{ BookingData?.puja?.name }}
+      </ion-row>
+
+      <div class="temple pname" *ngIf="BookingData?.temple?.name">
+        {{ BookingData?.temple?.name }}
+      </div>
+
+      <ion-card-content class="date-card">
+        <p class="b-badge">Booking Date</p>
+        <ion-row *ngIf="BookingData?.created_at" class="label-data mb-5">
+          {{ BookingData?.created_at | date: 'dd-MMM-YYYY h:mm a' }}
+        </ion-row>
+        <p class="b-badge">Schedule Date</p>
+        <ion-row *ngIf="BookingData?.schedule_at != null" class="label-data">
+          {{ BookingData?.schedule_at | date: 'dd-MMM-YYYY h:mm a' }}
+        </ion-row>
+        <ion-row *ngIf="BookingData?.schedule_at == null" class="label-data">
+          Not yet scheduled
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="p-detail-card">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5" class="label">Devotee Name : </ion-col>
+          <ion-col *ngIf="BookingData?.devotee" size="7" class="label-data">
+            {{ BookingData?.devotee }}
+          </ion-col>
+        </ion-row> 
+          
+        <ion-row>
+          <ion-col class="label" size="5">Gotra : </ion-col>
+          <ion-col *ngIf="BookingData?.gotra" size="7" class="label-data">
+            {{ BookingData?.gotra }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="label" size="5">State : </ion-col>
+          <ion-col *ngIf="BookingData?.state.name" size="7" class="label-data">
+            {{ BookingData?.state.name }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="label" size="5">District : </ion-col>
+          <ion-col *ngIf="BookingData?.district.name" size="7" class="label-data">
+            {{ BookingData?.district.name }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="label" size="5">Pincode : </ion-col>
+          <ion-col *ngIf="BookingData?.pincode" size="7" class="label-data">
+            {{ BookingData?.pincode }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="label" size="5">Mobile No : </ion-col>
+          <ion-col *ngIf="BookingData?.user?.mobile_no" size="7" class="label-data">
+            {{ BookingData?.user?.mobile_no }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="label" size="5">Address : </ion-col>
+          <ion-col *ngIf="BookingData?.address" size="7" class="label-data">
+            {{ BookingData?.address }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5" class="label">Puja Mode : </ion-col>
+          <ion-col *ngIf="BookingData?.mode" size="7" class="label-data">
+            {{ BookingData?.mode }}
+          </ion-col>
+        </ion-row>    
+        <ion-row>
+          <ion-col class="label" size="5">Puja Dakshina : </ion-col>
+          <ion-col *ngIf="dakshina" size="7" class="label-data">
+            {{ dakshina | currency:'INR':'symbol':'1.0-0' }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card> 
+    
+  </div>
+
+</ion-content>
+<!-- <app-header></app-header>
+<ion-content>
+  <img class="bg" src="../../assets/images/bg1.png">
+  <ion-card class="p-0">
+  <ion-card-header class="text-center font18 theme-red">Booking detail</ion-card-header>
+  <ion-card-content>
+    <ion-row class="rw-center t-sec">
+      Puja Name
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.puja?.name">
+      {{BookingData?.puja?.name}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Temple Name
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.temple?.name">
+      {{BookingData?.temple?.name}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Booking Date
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.created_at">
+      {{ BookingData?.created_at | date: 'dd-MMM-YYYY h:mm a' }}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Schedule Date
+    </ion-row>
+  
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.schedule_at != null">
+      {{ BookingData?.schedule_at | date: 'dd-MMM-YYYY h:mm a' }}
+    </ion-row>   
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.schedule_at == null">
+      Not yet scheduled
+    </ion-row>     
+    <ion-row class="rw-center t-sec mt-20">
+      Devotee Name
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.devotee">
+      {{BookingData?.devotee}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Gotra
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.gotra">
+      {{BookingData?.gotra}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      State
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.state">
+      {{BookingData?.state.name}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      City
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.district">
+      {{BookingData?.district.name}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Postcode
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.pincode">
+      {{BookingData?.pincode}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Address
+    </ion-row>
+    <ion-row class="rw-center b-sec p-10" *ngIf="BookingData?.address">
+      {{BookingData?.address}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Puja Dakshina
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.puja?.price">
+      ₹ {{BookingData?.puja.price}} /-
+    </ion-row>
+  </ion-card-content>
+
+</ion-card>
+</ion-content > -->

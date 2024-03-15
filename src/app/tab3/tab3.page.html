@@ -1,0 +1,41 @@
+<app-header></app-header>
+<ion-content>
+<img class="bg" src="../../assets/images/bg1.png">
+<!-- swiper start -->
+ <swiper-container 
+ [config]="config1" [autoplay]="true">
+        <swiper-slide >
+          <img class="img" src="../../assets/images/home1.png" />
+        </swiper-slide>
+        <swiper-slide >
+          <img class="img" src="../../assets/images/home2.png" />
+        </swiper-slide>
+        <swiper-slide >
+          <img class="img" src="../../assets/images/home3.png" />
+        </swiper-slide>
+</swiper-container>
+<!-- swiper end -->
+<ion-card class="home-tithi-card">
+  <iframe id="panchangwidgetid" src="https://panchang.click/widget.php?rid=047e673bc2118a975624867648b36ac6" style="border:0;background-color:transparent;height:335px;width: 333px;" scrolling="no"></iframe>
+</ion-card>
+<ion-row>
+  <ion-label class="ml-15 bold">Temples</ion-label>
+</ion-row>
+<hr class="hr">
+<swiper-container [config]="config2">
+  <swiper-slide *ngFor="let pair of templeList | chunk: 2" >
+    <ion-row class="text-center">
+      <ion-col size="6" *ngFor="let temple of pair" >
+        <ion-card class="temple-puja-card" >
+          <img class="puja-imgs" src="{{ templeimgPath }}{{ temple.image }}" (click)="book_puja(temple.slug)">
+          <ion-card-content class="puja-card-content mt-10">
+            <p class="long-text">{{ temple.name }}</p>
+            <p class="theme-red font12">{{temple.booked_puja_count}} People have booked</p>
+          </ion-card-content>
+          <ion-button class="btn book-puja-btn" (click)="book_puja(temple.slug)">Book Puja</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </swiper-slide>
+</swiper-container>
+</ion-content>

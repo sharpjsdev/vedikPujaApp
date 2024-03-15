@@ -1,0 +1,65 @@
+.txt-box{
+    border-radius: 10px;
+    padding: 0px;
+    margin: 20px;
+    border: 1px solid black;
+}
+ion-input{
+    padding-left: 12px !important;
+}
+.booking-img{
+    max-width: 100%;
+    min-height: 60px;
+    border-radius: 3px;
+    object-fit: cover;
+}
+.booking-card{
+    background: #fff0e5;
+}
+.u-card{
+    max-height: 40vh;
+}
+.b-card{
+    height: 60vh;
+}
+.inactive_section{
+    background: #e1a751;
+    border: 1px solid grey;
+    border-radius: 3px;
+
+}
+.active_section{
+    background: #A1191A;
+    color: white;
+    // border: 2px solid #e1a751;
+}
+.mt-msg{
+    text-align: center;
+    position: relative;
+    top: 135px;
+    margin: 0px auto;
+}
+
+ion-col.active_section {
+    position: relative;
+  }
+  
+  ion-col.active_section::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Place the arrow just below the text */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #A1191A; /* Adjust the color as needed */
+    pointer-events: none; /* Allow interactions with the content beneath the arrow */
+    margin-bottom: 20px;
+  }
+  ion-row {
+    font-family: "Kodchasan", sans-serif;
+    font-weight: 600;
+    overflow-x: visible;
+}

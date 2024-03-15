@@ -1,0 +1,20 @@
+<app-header></app-header>
+<ion-content>
+  <ion-row class="mt-20">
+    <ion-col><ion-label class="pl-20 bold">Notifications</ion-label></ion-col>
+    <ion-col class="text-right pr-20" (click)="refresh()">Refresh</ion-col>
+  </ion-row>
+  <img class="bg" src="../../assets/images/bg1.png">
+  <ng-container *ngIf="Notifications else noNoteRecord">
+    <ion-card   *ngFor="let notification of Notifications" (click)="bookings(notification.id)" [ngClass]="{'note-viewed-card': notification.view_status == 1, 'note-card': notification.view_status == 0}">
+      <h5 class="m-0">{{notification.title}}</h5>
+      <div [innerHTML]="notification.body"></div>
+      <div class="theme-red font14 pl-5 text-right mt-5">{{notification.created_at | date: 'dd-MMM-YYYY h:mm a'}}</div>
+    </ion-card>
+  </ng-container>
+  <ng-template #noNoteRecord >
+    <div class="mt-msg">
+      <span class="theme-red">No Record Exist</span>
+    </div>
+  </ng-template>
+</ion-content>

@@ -1,0 +1,31 @@
+
+<ion-content [scrollY]="false" style="--margin: 0px;">
+
+<img class="bg" src="../../assets/images/bg1.png">
+  <div class="logo-login">
+    <img class="logo-img" src="../../assets/images/logo.png">
+  </div>
+  <ion-row class="ion-align-items-center ion-justify-content-center mt-20">
+    <ion-icon name="person-circle-outline"></ion-icon> <span class="pl-5">Login</span>
+  </ion-row>
+  <!-- login form -->
+  <ion-content class="ion-padding">
+    
+      <ion-label class="pl-5">Enter Mobile Number <span class="req">*</span></ion-label>
+ 
+      <input  type="tel" id="phone" [(ngModel)]="mobileNumber" (ionChange)="change()"/>
+     
+      <div *ngIf="!mobileNumber && submit">
+        <ion-text color="danger">Please enter mobile no.</ion-text>
+      </div>
+
+    <ion-row class="mt-15">
+        <ion-col size="1" class="pl-5"><ion-checkbox  [(ngModel)]="termsConditions" ></ion-checkbox></ion-col>
+        <ion-col size="11" class="text-justify"> <span class="check-txt2"><span>By signing in, you agree to our</span> <a (click)="terms()" class="pl-5">Terms of Use ,</a>
+          <a class="pl-5" (click)="policy()">Privacy & Cookie Policy</a></span></ion-col>
+    </ion-row>
+    
+    <ion-button class="btn login-btn" expand="full" [disabled]="!termsConditions" (click)="login()">Get OTP</ion-button>
+
+   
+</ion-content>

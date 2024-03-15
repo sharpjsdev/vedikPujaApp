@@ -1,0 +1,18 @@
+<ion-content>
+  <img class="bg" src="../../assets/images/bg1.png">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" size-md="8" size-lg="6">
+        <ion-card class="text-center otp-card">
+          <ion-card-header class="font16">
+            Enter below the OTP
+          </ion-card-header>
+          <ion-card-content>
+            <ng-otp-input allowNumbersOnly="true"  (onInputChange)="onOtpChange($event)" [config]="{length:5}"></ng-otp-input>
+            <ion-button class="btn otp-submit" (click)="verifyOtp()" >Submit</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+</ion-content>
+
+

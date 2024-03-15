@@ -1,0 +1,35 @@
+.profile{
+    margin: 25px auto auto auto;
+    width: 100px;
+    height: 100px;
+}
+.edit-bg{
+    // padding: 7px 6px 3px 6px;
+    padding:5px 6px 2px 6px;
+    background: lightgray;
+    border-radius: 30px;
+    position: relative;
+    left: 70px;
+    bottom: 30px;
+}
+.txt-box{
+    border-radius: 10px;
+    padding: 0px;
+    margin: 20px;
+    border: 1px solid black;
+}
+ion-input{
+    padding-left: 12px !important;
+}
+.date-icon{
+    text-align: right;
+    position: relative;
+    right: 40px;
+    font-size: 30px;
+    top: -63px;
+}
+.input{
+--ion-border:#323232;
+border:2x solid #323232;
+border-radius: 22px 0px 22px 0px;
+}

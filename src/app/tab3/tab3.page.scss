@@ -1,0 +1,56 @@
+.home-tithi-card{
+    background: #FFFFFF;
+    padding-bottom: 25px;
+}
+.head1{
+    font-size: 18px;
+    margin: 0px;
+}
+.head2{
+    font-size: 14px;
+}
+.sunny{
+    background: #FCF0D4;
+    padding: 10px;
+    text-align: center;
+}
+.moon{
+    background: #FFCACA;
+    padding: 10px;
+    text-align: center;
+}
+.img{
+    width: 100%;
+}
+.icn{
+    position: relative;
+    right: 10px;
+    top: 2px;
+    font-size: 18px;
+}
+.label1{
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+}
+.label2{
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
+}
+.scroll-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .ion-row {
+    display: inline-flex;
+    overflow-x: scroll;
+    height: 300px;
+  }
+  ::ng-deep .swiper-pagination {
+    display: none !important;
+  }
+  
+ 
+

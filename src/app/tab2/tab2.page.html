@@ -1,0 +1,91 @@
+<app-header></app-header>
+<ion-content>
+  <img class="bg" src="../../assets/images/bg1.png">
+  <ion-row class="mt-20">
+    <ion-label class="pl-15 bold">Puja Booking</ion-label>
+  </ion-row>
+  <hr class="hr">
+  <fieldset class="txt-box">
+    <ion-input class="pl-15" placeholder="Search for puja" [(ngModel)]="searchKey" (keyup)="search()" type="text" name="search"></ion-input>
+  </fieldset>
+  <div class="search-icon">
+    <ion-icon aria-hidden="true" name="search" style="color: brown;" class="custom-icon"></ion-icon>
+    </div>
+  <ion-row class="mtm30">
+    <ion-label class="pl-15 bold">Upcoming Puja's</ion-label>
+  </ion-row>
+  <hr class="hr">
+
+<ng-container *ngIf="this.pujaList.length != 0; else noPujaList">
+  <ion-card class="search-puja-card p-0 m-15" *ngFor="let puja of pujaList; let i = index">
+   
+    <ion-card-header class="search-puja-card-header p-0">
+      <img *ngIf="puja.image" class="img search-img" src="{{pujaimgPath}}{{puja.image}}"  (click)="detail(puja.slug)"/>
+    </ion-card-header>
+    <ion-card-content class="mt-10 search-puja-card-content">
+      <ion-row>
+        <ion-col class="p-0  bold font16 pname" size="9">{{puja.name}}</ion-col>
+        <ion-col class="bold font16" size="3">₹ {{puja.price}}</ion-col>
+      </ion-row>
+      <p class="head2 bold mt-10" *ngIf="puja.temples[0].name">{{puja.temples[0].name}}</p>
+      <ion-row>
+        <ion-col size="8" class="bold .theme-yellow pt-10 pl-0">
+          <span class="mt-20 theme-yellow" > {{puja.booked_puja_count}} People have booked</span>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button size="small" class="btn book-puja-btn m-0" (click)="book_puja(puja.slug)">Book Puja</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-label *ngIf="puja?.schedule_at" class="bold">Puja will start in</ion-label>
+      <ion-row class="timer-block" *ngIf="puja?.schedule_at">
+
+        <ng-container *ngIf="puja?.schedule_at | countdown | async as countdownResult">
+          <ion-col class="timer-item">
+              <div class="timer-value">{{ countdownResult.split(' ')[0] }}</div>
+              <div class="timer-label">Days</div>
+          </ion-col>
+          <ion-col class="timer-item">
+              <div class="timer-value">{{ countdownResult.split(' ')[1] }}</div>
+              <div class="timer-label">Hrs</div>
+          </ion-col>
+          <ion-col class="timer-item">
+              <div class="timer-value">{{ countdownResult.split(' ')[2] }}</div>
+              <div class="timer-label">Min</div>
+          </ion-col>
+          <ion-col class="timer-item">
+              <div class="timer-value">{{ countdownResult.split(' ')[3] }}</div>
+              <div class="timer-label">Sec</div>
+          </ion-col>
+        </ng-container>
+
+        <!-- <ion-col class="timer-item">
+          <div class="timer-value">{{ (remainingTime$[i] | async)?.days }}</div>
+          <div class="timer-label">Days</div>
+        </ion-col>
+        <ion-col class="timer-item">
+          <div class="timer-value">{{ (remainingTime$[i] | async)?.hours }}</div>
+          <div class="timer-label">Hours</div>
+        </ion-col>
+        <ion-col class="timer-item">
+          <div class="timer-value">{{ (remainingTime$[i] | async)?.minutes }}</div>
+          <div class="timer-label">Min</div>
+        </ion-col>
+        <ion-col class="timer-item">
+          <div class="timer-value">{{ (remainingTime$[i] | async)?.seconds }}</div>
+          <div class="timer-label">Sec</div>
+        </ion-col>-->
+
+      </ion-row>   
+
+      <!-- <ion-icon aria-hidden="true" src="../../assets/icon/calender.svg" class="custom-icon mt-10"></ion-icon><span class="theme-red font14 pl-5 align-text1 mt-10">10 Nav 2023 , 12:11</span> -->
+    </ion-card-content>
+   
+  </ion-card>
+</ng-container>
+<ng-template #noPujaList >
+  <div class="mt-msg">
+    <span class="theme-red">No puja available.</span>
+  </div>
+</ng-template>
+
+</ion-content>

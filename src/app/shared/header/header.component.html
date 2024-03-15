@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <ion-buttons slot="start" *ngIf="currentURI != '/tabs/tab3'">
+        <ion-back-button class="backBtn" defaultHref="" (click)="back()"></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="start" *ngIf="currentURI == '/tabs/tab3'">
+        <ion-avatar class="profile">
+          <img [src]="imagepath" alt="Profile Picture" (click)="open_menu()">
+          <label  class="edit-bg" ><ion-icon  aria-hidden="true" src="../../assets/icon/menu_bar.svg" class="custom-icon" (click)="open_menu()"></ion-icon></label>
+        </ion-avatar>
+       
+      </ion-buttons>
+      <ion-row  *ngIf="currentURI == '/tabs/tab3'"class="pl-10 font14">Namste</ion-row>
+      <ion-row *ngIf="currentURI == '/tabs/tab3'" class="pl-10 bold font14 long-text">{{userName}}</ion-row>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-img (click)="home()" class="logo" src="../../assets/images/logo.png"></ion-img>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>

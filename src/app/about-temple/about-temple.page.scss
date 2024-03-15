@@ -1,0 +1,53 @@
+img{
+    width: 100%;
+}
+.bg{
+   position: absolute;
+}
+.about-puja-card{
+background: #FFF0E5;
+}
+.about-puja-header{
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.about-puja-content{
+    padding: 0px;
+    text-align: justify;
+}
+.txt-box{
+    border-radius: 10px;
+    padding: 0px;
+    margin: 20px;
+    border: 1px solid black;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .countdown-box {
+    text-align: center;
+  }
+  
+  .countdown-value {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .countdown-label {
+    font-size: 14px;
+    color: gray;
+  }
+  .timer-label {
+    font-size: 5px;
+  }
+  .timer-value {
+    font-size: 10px;
+  }
+  .timer-item {
+    margin: 5px 3px 0px 0px;
+  }

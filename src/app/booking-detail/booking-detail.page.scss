@@ -1,0 +1,70 @@
+.booking-detail-content {
+    --padding-bottom: 55px;
+}
+
+.bg {
+    width: 50%;
+    height: auto;
+}
+
+.puja-img{
+    border-radius: 50%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    text-align: center;
+    margin: 20px auto -75px auto;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    border: 2px solid #e1a751;
+    top: -20px;
+}
+
+.p-name-card{
+    border: 1px solid #a1191a;
+    //box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgb(161, 25, 26) 0px 1px 1px 1px;
+    padding-top: 60px;
+    text-align: center;
+}
+
+.p-heading{
+    color: #a1191a;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+}
+
+.temple{
+    text-align: center;
+}
+
+.p-detail-card{
+    border: 1px solid #a1191a;
+    padding: 5px;
+}
+
+.p-detail-card ion-row .label{
+    font-size: 15px;
+    font-weight: bold !important;
+}
+
+.p-detail-card .label-data, .date-card .label-data{
+    font-size: 15px;
+}
+
+.p-name-card ion-card-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.b-badge{
+    font-weight: bold;
+    font-size: 18px;
+    color: #b9600d;
+    padding: 2px 10px;
+    border-radius: 25px;
+}
+

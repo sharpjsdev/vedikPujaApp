@@ -1,0 +1,159 @@
+<app-header></app-header>
+<ion-content>
+  <img class="img" *ngIf="pujaImg" src="{{imgPath}}{{pujaImg}}"  alt="Puja img"/>
+  <ion-row class="mt-20">
+    <ion-col size="8"><ion-label class="ml-15 bold heading pname">{{pujaName}}</ion-label></ion-col>
+    <ion-col class="text-right pr-15" size="4">₹ {{pujaPrice}}</ion-col>
+    
+  </ion-row>
+
+  <ion-card class="p-0 about-puja-card" style="padding-left: 5px !important;">
+    <ion-card-header class="font16" >
+      About puja
+    </ion-card-header>
+    <ion-card-content class="text-justify">
+      <div *ngIf="showFullText; else preview" >
+        <div [innerHtml]="longText"> 
+        </div>
+        <a size="small" (click)="toggleReadMore()">Read less</a>
+      </div>
+      <ng-template #preview >
+        {{ previewText }}
+        <a size="small" (click)="toggleReadMore()">Read more...</a>
+      </ng-template>
+    </ion-card-content>
+    <ion-label *ngIf="pujaDetail?.schedule_at" class="bold font16 p-16">Puja will start in</ion-label>
+    <ion-row class="timer-block p-10" *ngIf="pujaDetail?.schedule_at">
+      <ion-col class="timer-item">
+        <div class="timer-value">{{ (remainingTime$ | async)?.days }}</div>
+        <div class="timer-label">Days</div>
+      </ion-col>
+      <ion-col class="timer-item">
+        <div class="timer-value">{{ (remainingTime$ | async)?.hours }}</div>
+        <div class="timer-label">Hours</div>
+      </ion-col>
+      <ion-col class="timer-item">
+        <div class="timer-value">{{ (remainingTime$ | async)?.minutes }}</div>
+        <div class="timer-label">Min</div>
+      </ion-col>
+      <ion-col class="timer-item">
+        <div class="timer-value">{{ (remainingTime$ | async)?.seconds }}</div>
+        <div class="timer-label">Sec</div>
+      </ion-col>
+    </ion-row>
+    </ion-card>
+    <ion-row class="mt-20">
+      <ion-label class="ml-20 bold heading">Enter detail to book puja</ion-label>
+    </ion-row>
+    <ion-row class="mt-20">
+      <ion-label class="ml-20 bold heading">Packages</ion-label>
+    </ion-row>
+    <ion-row class="mt-10 p-10">
+      
+      <ion-col *ngFor="let pkg of pujaDetailpkg" class="pkgTab" size="3" [class.selected]="pkg.id === selectedPackageId"  (click)="ChangeTab(pkg.id);">{{ pkg.name }}</ion-col>
+     
+    </ion-row> 
+
+    <ion-row class="pl-15">
+      <div class="pkgDesc">
+        <img *ngIf="selectedPackageId !== null" class="pkgImg" [src]="getImageSource()">
+        <div *ngIf="dakshinaa !== null">₹ {{dakshinaa}}</div>
+        <div class="mt-20">{{ getDescription() }}</div>
+      </div>
+    </ion-row>
+
+
+
+    <ion-row class="temple_row">
+      <ion-col size="12" class="p-0">
+      <fieldset class="txt-box tmple">
+        <legend class="ml-10">Temple:  <span class="req">*</span></legend>
+        <ion-select class="temple" placeholder="Select a temple"  [(ngModel)]="formData.temple">
+          <ion-select-option *ngFor="let tmp of templeList" [value]="tmp.temple_id">
+            {{ tmp.name }}
+          </ion-select-option>
+          </ion-select>
+      </fieldset>
+      <div class="pl-20" *ngIf="!isValidTemple() && submit">
+        <ion-text color="danger">This field is required.</ion-text>
+      </div> 
+      </ion-col>
+    </ion-row>
+    <ion-row class="temple_row">
+      <ion-col size="12" class="p-0">
+      <fieldset class="txt-box tmple p-mode">
+        <legend class="ml-10">Puja Mode:  <span class="req">*</span></legend>
+        <ion-radio-group [(ngModel)]="formData.pujaMode"   (ionChange)="pujaModeChange()">
+          <ion-item class="mt-10">
+            <ion-radio value="online" ></ion-radio>
+            <ion-label class="pl-10">Online ₹{{getOnline_price()}} /-</ion-label><br>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="offline"></ion-radio>
+            <ion-label class="pl-10"> Offline ₹{{getOffline_price()}} /-</ion-label>
+          </ion-item>
+        </ion-radio-group>
+      </fieldset>
+      <div class="pl-20" *ngIf="!isValidMode() && submit">
+        <ion-text color="danger">This field is required.</ion-text>
+      </div> 
+      </ion-col>
+    </ion-row>
+    <fieldset class="txt-box tmple p-mode">
+    <legend class="ml-10">Additional: </legend>
+      <ion-list>
+        <ion-item *ngFor="let payment of payments">
+          <ion-checkbox
+             [(ngModel)]="selectedPayments[payment.id]"
+            [value]="payment.id"
+            (ionChange)="onCheckboxChange(payment.id)"
+          ></ion-checkbox>
+          <ion-label class="additional-check">{{ payment.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </fieldset>
+    <fieldset class="txt-box">
+      <legend class="ml-10">Devotee name : <span class="req">*</span></legend>
+      <ion-input class="pl-15" type="text"  [(ngModel)]="formData.name"></ion-input>
+    </fieldset>
+    <div class="pl-20" *ngIf="!isValidName() && submit">
+      <ion-text color="danger">This field is required.</ion-text>
+    </div>
+    <fieldset class="txt-box" *ngIf="getTitle() == 'Partner'">
+      <legend class="ml-10">Devotee name(partner)  : </legend>
+      <ion-input class="pl-15" type="text"  [(ngModel)]="partner_name"></ion-input>
+    </fieldset>
+    <div *ngIf="getTitle() !== 'Single' && getTitle() !== 'Partner'">
+    <ion-row *ngFor="let att of anArray; let idx = index">
+      <ion-col size="10" class="p-0">
+        <fieldset class="txt-box" >
+          <legend class="ml-10">Devotee name: {{idx+2}}</legend>
+          <ion-input class="pl-15" type="text" [(ngModel)]="att.value" ></ion-input>
+        </fieldset>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon size="large" name="remove-circle-outline" class="rem-pos theme-red" (click)="remove_name(idx)"></ion-icon>
+      </ion-col>
+    </ion-row>   
+    <div class="text-right" >
+    <a size="small add-nm" *ngIf="(getTitle() == 'Short Family' && anArray.length <= 2) || (getTitle() == 'Joint Family' && anArray.length <= 20)" class="pr-25 bold" (click)="Add()">Add name +</a>
+    </div>
+    </div>
+
+    <ion-card *ngIf="data">
+      <ion-item *ngFor="let att of anArray;">
+        <div class="card-title">{{att.value}}</div>
+      </ion-item>
+    </ion-card>
+    <fieldset class="txt-box">
+      <legend class="ml-10">Gotra : </legend>
+      <ion-input class="pl-15" type="text" [(ngModel)]="formData.gotra" name="gotra"></ion-input>
+    </fieldset>
+   
+    <fieldset class="txt-box">
+      <ion-textarea class="pl-15" rows="5" [(ngModel)]="formData.wish" placeholder="Wish for the Puja/Note(optional)"  name="wish"></ion-textarea>
+    </fieldset>
+    <ion-row class="text-center">
+      <ion-button class="btn" (click)="nextStep()">Next <b *ngIf="dakshinaa"> (₹ {{ dakshinaa }}) </b></ion-button>
+    </ion-row>
+</ion-content>

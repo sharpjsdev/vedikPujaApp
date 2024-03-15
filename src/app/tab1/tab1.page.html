@@ -1,0 +1,78 @@
+<app-header></app-header>
+<ion-content>
+<img class="bg" src="../../assets/images/bg1.png">
+<ion-row class="mt-20">
+    <ion-col><ion-label class="pl-10 bold">My Bookings</ion-label></ion-col>
+    <ion-col class="text-right pr-10" (click)="refresh()">Refresh</ion-col>
+</ion-row>
+<ion-row class="mt-20 text-center m-10">
+  <ion-col [ngClass]="{'active_section': section == 2, 'inactive_section': section == 1 || section == 3}"><ion-label class="bold" (click)="booked_tab()">Booked</ion-label></ion-col>
+  <ion-col [ngClass]="{'active_section': section == 1, 'inactive_section': section == 2 || section == 3}"><ion-label class="bold" (click)="scheduled_tab()">Scheduled</ion-label></ion-col>
+  <ion-col [ngClass]="{'active_section': section == 3, 'inactive_section': section == 2 || section == 1}" (click)="completed_tab()">Completed</ion-col>
+</ion-row>
+<ion-row *ngIf="section == 2">
+  <ng-container *ngIf="booked_list.length != 0; else noBookedRecord">
+  <ion-card class="p-5 booking-card" *ngFor="let book of booked_list;" >
+    <ion-row >
+      <ion-col size="3" (click)="BookingDetail(book.id)"><img *ngIf="book.puja.image"  class="booking-img" src="{{pujaimgPath}}{{book.puja.image}}" ></ion-col>
+      <ion-col size="9" (click)="BookingDetail(book.id)">
+        <div class="font16 bold black pname" *ngIf="book?.puja">{{book?.puja.name}}</div>
+        <div class="font12 mt-5 pname" *ngIf="book?.temple.name">{{book?.temple.name}}</div> 
+        <div class="theme-red font11 align-text1 mt-10" *ngIf="book?.created_at">Booked_at : {{book?.created_at | date: 'dd-MMM-YYYY h:mm a'}}</div>
+        <div class="theme-red font11 align-text1" *ngIf="book?.schedule_at">Schedule_at : {{book?.schedule_at | date: 'dd-MMM-YYYY h:mm a'}}</div>
+        <div class="theme-red font11 align-text1" *ngIf="!book?.schedule_at">Schedule_at : Not yet scheduled</div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ng-container>
+<ng-template #noBookedRecord >
+  <div class="mt-msg">
+    <span class="theme-red">No Record Exist</span>
+  </div>
+</ng-template>
+</ion-row>
+<ion-row *ngIf="section == 1">
+  <ng-container *ngIf="scheduled_list.length != 0; else noUpcRecord">
+  <ion-card class="p-5 booking-card" *ngFor="let book of scheduled_list;" >
+    <ion-row>
+        <ion-col size="3" (click)="BookingDetail(book.id)"><img *ngIf="book.puja.image"  class="booking-img" src="{{pujaimgPath}}{{book.puja.image}}" ></ion-col>
+        <ion-col size="9" (click)="BookingDetail(book.id)">
+          <div class="font16 bold black pname" *ngIf="book?.puja">{{book?.puja.name}}</div>
+          <div class="font12 mt-5 pname" *ngIf="book?.temple?.name">{{book?.temple.name}}</div> 
+          <div class="theme-red font11 align-text1 mt-10" *ngIf="book?.created_at">Booked_at : {{book?.created_at | date: 'dd-MMM-YYYY h:mm a'}}</div>
+          <div class="theme-red font11 align-text1 " *ngIf="book?.schedule_at">Schedule_at : {{book?.schedule_at | date: 'dd-MMM-YYYY h:mm a'}}</div>
+          <div class="theme-red font11 align-text1 " *ngIf="!book?.schedule_at">Schedule_at : Not yet scheduled</div>
+        </ion-col>
+        <ion-col size="12" *ngIf="book?.link"><div class="theme-red font11 align-text1 mt-10" ><ion-button size="small" class="btn book-puja-btn m-0" (click)="joinPuja(book?.link)">Join</ion-button></div></ion-col>
+    </ion-row>
+  </ion-card>
+  </ng-container>
+  <ng-template #noUpcRecord >
+    <div class="mt-msg">
+      <span class="theme-red">No Record Exist</span>
+    </div>
+  </ng-template>
+</ion-row>
+<ion-row *ngIf="section == 3">
+  <ng-container *ngIf="completed_list.length != 0; else noHistoryRecord">
+  <ion-card class="p-5 booking-card" *ngFor="let book of completed_list;" >
+    <ion-row >
+      <ion-col size="3" (click)="BookingDetail(book.id)"><img *ngIf="book.puja.image"  class="booking-img" src="{{pujaimgPath}}{{book.puja.image}}" ></ion-col>
+      <ion-col size="9" (click)="BookingDetail(book.id)">
+        <div class="font16 bold black pname" *ngIf="book?.puja">{{book?.puja.name}}</div>
+        <div class="font12 mt-5 pname" *ngIf="book?.temple.name">{{book?.temple.name}}</div>
+        <div class="theme-red font11 align-text1 mt-10" *ngIf="book?.created_at">Booked_at : {{book?.created_at | date: 'dd-MMM-YYYY h:mm a'}}</div>
+        <div class="theme-red font11 align-text1 " *ngIf="book?.schedule_at">Schedule_at : {{book?.schedule_at | date: 'dd-MMM-YYYY h:mm a'}}</div>
+        <div class="theme-red font11 align-text1 " *ngIf="!book?.schedule_at">Schedule_at : Not yet scheduled</div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ng-container>
+<ng-template #noHistoryRecord >
+  <div class="mt-msg">
+    <span class="theme-red">No Record Exist</span>
+  </div>
+</ng-template>
+</ion-row>
+</ion-content>
+

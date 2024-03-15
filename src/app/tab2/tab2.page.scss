@@ -1,0 +1,45 @@
+
+.about-puja-card{
+background: #FFF0E5;
+}
+.about-puja-header{
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.about-puja-content{
+    padding: 0px;
+    text-align: justify;
+}
+.txt-box{
+    border-radius: 10px;
+    padding: 0px;
+    margin: 20px;
+    border: 1px solid black;
+}
+.search-icon{
+    text-align: right;
+    position: relative;
+    right: 33px;
+    font-size: 30px;
+    top: -58px;
+}
+ion-input{
+    padding-left: 12px !important;
+}
+.head1{
+    font-size: 18px;
+    margin: 0px;
+}
+.head2{
+    font-size: 14px;
+}
+.book-puja-btn{
+    --border-radius: 3px !important;
+    border: none;
+}
+.mt-msg{
+    text-align: center;
+    position: relative;
+    top: 75px;
+}

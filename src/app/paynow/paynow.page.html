@@ -1,0 +1,73 @@
+<app-header></app-header>
+<ion-content>
+  <img class="bg" src="../../assets/images/bg1.png">
+  <ion-card class="p-0">
+  <ion-card-header class="text-center font18 theme-red">Booking detail</ion-card-header>
+  <ion-card-content>
+    <ion-row class="rw-center t-sec">
+      Puja Name
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.puja?.name">
+      {{BookingData?.puja?.name}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Temple Name
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.temple?.name">
+      {{BookingData?.temple?.name}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Devotee Name
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.devotee">
+      {{BookingData?.devotee}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Gotra
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.gotra">
+      {{BookingData?.gotra}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      State
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.state">
+      {{BookingData?.state.name}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      City
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.district">
+      {{BookingData?.district.name}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Postcode
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.pincode">
+      {{BookingData?.pincode}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Address
+    </ion-row>
+    <ion-row class="rw-center b-sec p-10" *ngIf="BookingData?.address">
+      {{BookingData?.address}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Puja Mode
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="BookingData?.mode">
+      {{BookingData?.mode}}
+    </ion-row>
+    <ion-row class="rw-center t-sec mt-20">
+      Puja Dakshina
+    </ion-row>
+    <ion-row class="rw-center b-sec" *ngIf="dakshinaa">
+      ₹ {{dakshinaa}} /-
+    </ion-row>
+  </ion-card-content>
+  <ion-row class="text-center">
+    <ion-button class="btn" (click)="payWithRazorpay()">Pay Now ({{dakshinaa}})</ion-button>
+  </ion-row>
+</ion-card>
+</ion-content >
+

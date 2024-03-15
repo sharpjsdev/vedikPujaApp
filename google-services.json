@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "463158734448",
+    "project_id": "vedikpuja-e7b51",
+    "storage_bucket": "vedikpuja-e7b51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463158734448:android:b0ded7323b91b12a0d0eb5",
+        "android_client_info": {
+          "package_name": "com.vedikpuja.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARd2YdtqVwojRkg8dHslogNt71a9zIOHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

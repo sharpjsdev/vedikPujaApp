@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">VedikPuja</string>
+    <string name="title_activity_main">VedikPuja</string>
+    <string name="package_name">com.vedikpuja.app</string>
+    <string name="custom_url_scheme">com.vedikpuja.app</string>
+</resources>

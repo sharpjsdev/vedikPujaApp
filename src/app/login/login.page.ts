@@ -37,6 +37,7 @@ export class LoginPage implements OnInit {
     
   }
   countryChanged() {
+    
     console.log('Selected Country Code:', this.selectedCountry);
   }
   ngOnInit() {
@@ -75,7 +76,7 @@ export class LoginPage implements OnInit {
     if(this.submit && this.mobileNumber){
     if(this.termsConditions){
     this.submit = false;
-    let data = {'mobile_no':this.mobileNumber,'device_type':"App",'country_code':"+"+this.selectedCountry,'device_token':this.device_token};
+    let data = {'mobile_no':this.mobileNumber,'device_type':"App",'country_code':this.selectedCountry,'device_token':this.device_token};
     this.loader.present();
     this.fetch.login(data).subscribe({
     next: (res) => {

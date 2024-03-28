@@ -15,11 +15,9 @@
       <ion-item>
         <ion-select [(ngModel)]="selectedCountry" (ionChange)="countryChanged()">
           <ion-select-option *ngFor="let country of countries" [value]="country.dial_code">
-            ({{ country.dial_code }}) {{ country.name }} 
+            {{ country.dial_code }} ({{ country.code }})
           </ion-select-option>
         </ion-select>
-      </ion-item>
-      <ion-item>
       <ion-input type="tel" id="phone" [(ngModel)]="mobileNumber" placeholder="Enter Mobile no." (ionChange)="change()"></ion-input>
      </ion-item>
       <div *ngIf="!mobileNumber && submit">
